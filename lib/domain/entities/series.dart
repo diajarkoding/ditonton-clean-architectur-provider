@@ -40,24 +40,23 @@ class Series extends Equatable {
     this.overview,
     this.posterPath,
     this.name,
-  });
+  })  : adult = null,
+        backdropPath = null,
+        firstAirDate = null,
+        genreIds = null,
+        mediaType = null,
+        originCountry = null,
+        originalLanguage = null,
+        originalName = null,
+        popularity = null,
+        voteAverage = null,
+        voteCount = null;
 
   @override
   List<Object?> get props => [
-        adult,
-        backdropPath,
-        firstAirDate,
-        genreIds,
-        id,
-        mediaType,
-        name,
-        originCountry,
-        originalLanguage,
-        originalName,
-        overview,
-        popularity,
-        posterPath,
-        voteAverage,
-        voteCount,
+        adult, backdropPath, firstAirDate, genreIds, id,
+        mediaType, name, originCountry, originalLanguage,
+        originalName, overview, popularity, posterPath,
+        voteAverage, voteCount,
       ];
 }
