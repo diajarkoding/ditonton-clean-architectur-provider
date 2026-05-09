@@ -33,7 +33,7 @@ void main() {
     // act
     await provider.fetchWatchlistSeries();
     // assert
-    expect(provider.watchlistState, RequestState.Loaded);
+    expect(provider.watchlistState, RequestState.loaded);
     expect(provider.watchlistSeries, [testWatchlistSeries]);
     expect(listenerCallCount, 2);
   });
@@ -45,7 +45,7 @@ void main() {
     // act
     await provider.fetchWatchlistSeries();
     // assert
-    expect(provider.watchlistState, RequestState.Error);
+    expect(provider.watchlistState, RequestState.error);
     expect(provider.message, "Can't get data");
     expect(listenerCallCount, 2);
   });

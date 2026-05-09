@@ -96,7 +96,7 @@ class DetailContent extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(movie.title ?? '', style: kHeading5),
+                            Text(movie.title, style: kHeading5),
                             ElevatedButton(
                               onPressed: () async {
                                 final notifier = Provider.of<MovieDetailNotifier>(
@@ -151,7 +151,7 @@ class DetailContent extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             Text('Overview', style: kHeading6),
-                            Text(movie.overview ?? ''),
+                            Text(movie.overview),
                             const SizedBox(height: 16),
                             Text('Recommendations', style: kHeading6),
                             Consumer<MovieDetailNotifier>(

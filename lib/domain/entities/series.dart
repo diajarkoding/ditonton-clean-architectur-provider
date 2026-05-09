@@ -2,21 +2,21 @@ import 'package:equatable/equatable.dart';
 
 class Series extends Equatable {
   Series({
-    this.adult,
+    this.adult = false,
     this.backdropPath,
     this.firstAirDate,
-    this.genreIds,
+    this.genreIds = const [],
     required this.id,
     this.mediaType,
     this.name,
-    this.originCountry,
-    this.originalLanguage,
-    this.originalName,
-    this.overview,
-    this.popularity,
+    this.originCountry = const [],
+    this.originalLanguage = '',
+    this.originalName = '',
+    this.overview = '',
+    this.popularity = 0.0,
     this.posterPath,
-    this.voteAverage,
-    this.voteCount,
+    this.voteAverage = 0.0,
+    this.voteCount = 0,
   });
 
   Series.watchlist({
@@ -26,20 +26,20 @@ class Series extends Equatable {
     this.name,
   });
 
-  final bool? adult;
+  final bool adult;
   final String? backdropPath;
   final String? firstAirDate;
-  final List<int>? genreIds;
+  final List<int> genreIds;
   final int id;
   final String? name;
-  final List<String>? originCountry;
-  final String? originalLanguage;
-  final String? originalName;
+  final List<String> originCountry;
+  final String originalLanguage;
+  final String originalName;
   final String? overview;
-  final double? popularity;
+  final double popularity;
   final String? posterPath;
-  final double? voteAverage;
-  final int? voteCount;
+  final double voteAverage;
+  final int voteCount;
   final String? mediaType;
 
   @override
