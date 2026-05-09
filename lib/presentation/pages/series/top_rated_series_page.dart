@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TopRatedSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/top-rated-series';
+  static const routeName = '/top-rated-series';
 
   @override
   _TopRatedSeriesPageState createState() => _TopRatedSeriesPageState();
@@ -30,11 +30,11 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TopRatedSeriesNotifier>(
           builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+            if (data.state == RequestState.loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (data.state == RequestState.loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final series = data.series[index];

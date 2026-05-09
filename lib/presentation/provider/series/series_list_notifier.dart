@@ -10,25 +10,25 @@ class SeriesListNotifier extends ChangeNotifier {
   var _nowPlayingSeries = <Series>[];
   List<Series> get nowPlayingSeries => _nowPlayingSeries;
 
-  RequestState _nowPlayingState = RequestState.Empty;
+  RequestState _nowPlayingState = RequestState.empty;
   RequestState get nowPlayingState => _nowPlayingState;
 
   var _popularSeries = <Series>[];
   List<Series> get popularSeries => _popularSeries;
 
-  RequestState _popularSeriesState = RequestState.Empty;
+  RequestState _popularSeriesState = RequestState.empty;
   RequestState get popularSeriesState => _popularSeriesState;
 
   var _topRatedSeries = <Series>[];
   List<Series> get topRatedSeries => _topRatedSeries;
 
-  RequestState _topRatedSeriesState = RequestState.Empty;
+  RequestState _topRatedSeriesState = RequestState.empty;
   RequestState get topRatedSeriesState => _topRatedSeriesState;
 
   List<Series> _seriesRecommendations = [];
   List<Series> get seriesRecommendations => _seriesRecommendations;
 
-  RequestState _recommendationState = RequestState.Empty;
+  RequestState _recommendationState = RequestState.empty;
   RequestState get recommendationState => _recommendationState;
 
   String _message = '';
@@ -47,18 +47,18 @@ class SeriesListNotifier extends ChangeNotifier {
   final GetSeriesRecommendations getSeriesRecommendations;
 
   Future<void> fetchNowPlayingSeries() async {
-    _nowPlayingState = RequestState.Loading;
+    _nowPlayingState = RequestState.loading;
     notifyListeners();
 
     final result = await getNowPlayingSeries.execute();
     result.fold(
       (failure) {
-        _nowPlayingState = RequestState.Error;
+        _nowPlayingState = RequestState.error;
         _message = failure.message;
         notifyListeners();
       },
       (seriesData) {
-        _nowPlayingState = RequestState.Loaded;
+        _nowPlayingState = RequestState.loaded;
         _nowPlayingSeries = seriesData;
         notifyListeners();
       },
@@ -66,18 +66,18 @@ class SeriesListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchPopularSeries() async {
-    _popularSeriesState = RequestState.Loading;
+    _popularSeriesState = RequestState.loading;
     notifyListeners();
 
     final result = await getPopularSeries.execute();
     result.fold(
       (failure) {
-        _popularSeriesState = RequestState.Error;
+        _popularSeriesState = RequestState.error;
         _message = failure.message;
         notifyListeners();
       },
       (seriesData) {
-        _popularSeriesState = RequestState.Loaded;
+        _popularSeriesState = RequestState.loaded;
         _popularSeries = seriesData;
         notifyListeners();
       },
@@ -85,18 +85,18 @@ class SeriesListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchTopRatedSeries() async {
-    _topRatedSeriesState = RequestState.Loading;
+    _topRatedSeriesState = RequestState.loading;
     notifyListeners();
 
     final result = await getTopRatedSeries.execute();
     result.fold(
       (failure) {
-        _topRatedSeriesState = RequestState.Error;
+        _topRatedSeriesState = RequestState.error;
         _message = failure.message;
         notifyListeners();
       },
       (seriesData) {
-        _topRatedSeriesState = RequestState.Loaded;
+        _topRatedSeriesState = RequestState.loaded;
         _topRatedSeries = seriesData;
         notifyListeners();
       },
@@ -104,18 +104,18 @@ class SeriesListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetctSeriesRecommendations(int id) async {
-    _recommendationState = RequestState.Loading;
+    _recommendationState = RequestState.loading;
     notifyListeners();
 
     final result = await getSeriesRecommendations.execute(id);
     result.fold(
       (failure) {
-        _recommendationState = RequestState.Error;
+        _recommendationState = RequestState.error;
         _message = failure.message;
         notifyListeners();
       },
       (seriesData) {
-        _recommendationState = RequestState.Loaded;
+        _recommendationState = RequestState.loaded;
         _seriesRecommendations = seriesData;
         notifyListeners();
       },

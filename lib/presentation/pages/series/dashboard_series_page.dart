@@ -4,7 +4,7 @@ import 'package:ditonton/presentation/pages/series/watchlist_series_page.dart';
 import 'package:flutter/material.dart';
 
 class DashboardSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/dashboard-series';
+  static const routeName = '/dashboard-series';
 
   const DashboardSeriesPage({Key? key}) : super(key: key);
 

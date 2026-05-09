@@ -8,7 +8,7 @@ class SeriesSearchNotifier extends ChangeNotifier {
 
   SeriesSearchNotifier({required this.searchSeries});
 
-  RequestState _state = RequestState.Empty;
+  RequestState _state = RequestState.empty;
   RequestState get state => _state;
 
   List<Series> _searchResult = [];
@@ -18,19 +18,19 @@ class SeriesSearchNotifier extends ChangeNotifier {
   String get message => _message;
 
   Future<void> fetchSeriesSearch(String query) async {
-    _state = RequestState.Loading;
+    _state = RequestState.loading;
     notifyListeners();
 
     final result = await searchSeries.execute(query);
     result.fold(
       (failure) {
         _message = failure.message;
-        _state = RequestState.Error;
+        _state = RequestState.error;
         notifyListeners();
       },
       (data) {
         _searchResult = data;
-        _state = RequestState.Loaded;
+        _state = RequestState.loaded;
         notifyListeners();
       },
     );

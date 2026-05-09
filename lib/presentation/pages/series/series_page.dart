@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/list-series';
+  static const routeName = '/list-series';
 
   @override
   _SeriesPageState createState() => _SeriesPageState();
@@ -39,7 +39,7 @@ class _SeriesPageState extends State<SeriesPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchSeriesPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchSeriesPage.routeName);
             },
             icon: Icon(Icons.search),
           )
@@ -54,7 +54,7 @@ class _SeriesPageState extends State<SeriesPage> {
               _buildSubHeading(
                 title: 'Now Playing',
                 onTap: () => Navigator.pushNamed(
-                    context, NowPlayingSeriesPage.ROUTE_NAME),
+                    context, NowPlayingSeriesPage.routeName),
               ),
               // Text(
               //   'Now Playing',
@@ -62,11 +62,11 @@ class _SeriesPageState extends State<SeriesPage> {
               // ),
               Consumer<SeriesListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return SeriesList(data.nowPlayingSeries);
                 } else {
                   return Text('Failed');
@@ -75,15 +75,15 @@ class _SeriesPageState extends State<SeriesPage> {
               _buildSubHeading(
                 title: 'Popular',
                 onTap: () =>
-                    Navigator.pushNamed(context, PopularSeriesPage.ROUTE_NAME),
+                    Navigator.pushNamed(context, PopularSeriesPage.routeName),
               ),
               Consumer<SeriesListNotifier>(builder: (context, data, child) {
                 final state = data.popularSeriesState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return SeriesList(data.popularSeries);
                 } else {
                   return Text('Failed');
@@ -92,15 +92,15 @@ class _SeriesPageState extends State<SeriesPage> {
               _buildSubHeading(
                 title: 'Top Rated',
                 onTap: () =>
-                    Navigator.pushNamed(context, TopRatedSeriesPage.ROUTE_NAME),
+                    Navigator.pushNamed(context, TopRatedSeriesPage.routeName),
               ),
               Consumer<SeriesListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedSeriesState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return SeriesList(data.topRatedSeries);
                 } else {
                   return Text('Failed');
@@ -154,14 +154,14 @@ class SeriesList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  SeriesDetailPage.ROUTE_NAME,
+                  SeriesDetailPage.routeName,
                   arguments: series.id,
                 );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${series.posterPath}',
+                  imageUrl: '$baseImageUrl${series.posterPath}',
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
                   ),
