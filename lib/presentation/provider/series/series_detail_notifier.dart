@@ -26,7 +26,7 @@ class SeriesDetailNotifier extends ChangeNotifier {
   late SeriesDetail _seriesDetail;
   SeriesDetail get seriesDetail => _seriesDetail;
 
-  RequestState _seriesDetailState = RequestState.Empty;
+  RequestState _seriesDetailState = RequestState.empty;
   RequestState get seriesDetailState => _seriesDetailState;
 
   String _message = '';
@@ -36,18 +36,18 @@ class SeriesDetailNotifier extends ChangeNotifier {
   bool get isAddedToWatchlist => _isAddedtoWatchlist;
 
   Future<void> fetchSeriesDetail(int id) async {
-    _seriesDetailState = RequestState.Loading;
+    _seriesDetailState = RequestState.loading;
     notifyListeners();
     final detailResult = await getSeriesDetail.execute(id);
 
     detailResult.fold(
       (failure) {
-        _seriesDetailState = RequestState.Error;
+        _seriesDetailState = RequestState.error;
         _message = failure.message;
         notifyListeners();
       },
       (seriesDetail) {
-        _seriesDetailState = RequestState.Loaded;
+        _seriesDetailState = RequestState.loaded;
         _seriesDetail = seriesDetail;
         notifyListeners();
       },

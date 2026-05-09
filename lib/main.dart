@@ -30,15 +30,24 @@ import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: '.env');
   di.init();
-  runApp(MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -62,7 +71,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
-
         // Series
         ChangeNotifierProvider(
           create: (_) => di.locator<SeriesListNotifier>(),
@@ -82,70 +90,64 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistSeriesNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) {
-            di.locator<SeriesListNotifier>();
-            di.locator<SeriesDetailNotifier>();
-          },
-        ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Ditonton',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
           colorScheme: kColorScheme,
           primaryColor: kRichBlack,
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: HomeMoviePage(),
+        home: const HomeMoviePage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/home':
-              return MaterialPageRoute(builder: (_) => HomeMoviePage());
-            case PopularMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-            case TopRatedMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
-            case MovieDetailPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => const HomeMoviePage());
+            case PopularMoviesPage.routeName:
+              return CupertinoPageRoute(builder: (_) => const PopularMoviesPage());
+            case TopRatedMoviesPage.routeName:
+              return CupertinoPageRoute(builder: (_) => const TopRatedMoviesPage());
+            case MovieDetailPage.routeName:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
-            case SearchPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => SearchPage());
-            case WatchlistMoviesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
-            case NowPlayingMoviePage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => NowPlayingMoviePage());
-            case AboutPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => AboutPage());
+            case SearchPage.routeName:
+              return CupertinoPageRoute(builder: (_) => const SearchPage());
+            case WatchlistMoviesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const WatchlistMoviesPage());
+            case NowPlayingMoviePage.routeName:
+              return MaterialPageRoute(builder: (_) => const NowPlayingMoviePage());
+            case AboutPage.routeName:
+              return MaterialPageRoute(builder: (_) => const AboutPage());
             // series
-            case SeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => SeriesPage());
-            case SeriesDetailPage.ROUTE_NAME:
+            case SeriesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const SeriesPage());
+            case SeriesDetailPage.routeName:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => SeriesDetailPage(id: id),
                 settings: settings,
               );
-            case WatchlistSeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistSeriesPage());
-            case PopularSeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => PopularSeriesPage());
-            case TopRatedSeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => TopRatedSeriesPage());
-            case SearchSeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => SearchSeriesPage());
-            case DashboardSeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => DashboardSeriesPage());
-            case NowPlayingSeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => NowPlayingSeriesPage());
-            // default
+            case WatchlistSeriesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const WatchlistSeriesPage());
+            case PopularSeriesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const PopularSeriesPage());
+            case TopRatedSeriesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const TopRatedSeriesPage());
+            case SearchSeriesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const SearchSeriesPage());
+            case DashboardSeriesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const DashboardSeriesPage());
+            case NowPlayingSeriesPage.routeName:
+              return MaterialPageRoute(builder: (_) => const NowPlayingSeriesPage());
             default:
               return MaterialPageRoute(builder: (_) {
-                return Scaffold(
+                return const Scaffold(
                   body: Center(
                     child: Text('Page not found :('),
                   ),

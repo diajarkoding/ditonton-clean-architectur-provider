@@ -10,7 +10,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class SeriesDetailPage extends StatefulWidget {
-  static const ROUTE_NAME = '/detail-series';
+  static const routeName = '/detail-series';
 
   final int id;
   SeriesDetailPage({required this.id});
@@ -38,13 +38,13 @@ class _SeriesDetailPageState extends State<SeriesDetailPage> {
     return Scaffold(
       body: Consumer2<SeriesListNotifier, SeriesDetailNotifier>(
         builder: (context, provider1, provider2, _) {
-          if (provider1.recommendationState == RequestState.Loading ||
-              provider2.seriesDetailState == RequestState.Loading) {
+          if (provider1.recommendationState == RequestState.loading ||
+              provider2.seriesDetailState == RequestState.loading) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (provider1.recommendationState == RequestState.Loaded ||
-              provider2.seriesDetailState == RequestState.Loaded) {
+          } else if (provider1.recommendationState == RequestState.loaded ||
+              provider2.seriesDetailState == RequestState.loaded) {
             final seriesRecommendation = provider1.seriesRecommendations;
             final seriesDetail = provider2.seriesDetail;
             return SafeArea(
@@ -192,11 +192,7 @@ class DetailContent extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: series.episodeRunTime!
-                                  .map(
-                                    (e) => Text(
-                                      _showDuration(e as int)!,
-                                    ),
-                                  )
+                                  .map((e) => Text(_showDuration(e as int)!))
                                   .toList(),
                             ),
                             SizedBox(height: 15),
@@ -233,15 +229,15 @@ class DetailContent extends StatelessWidget {
                             Consumer<SeriesListNotifier>(
                               builder: (context, data, child) {
                                 if (data.recommendationState ==
-                                    RequestState.Loading) {
+                                    RequestState.loading) {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (data.recommendationState ==
-                                    RequestState.Error) {
+                                    RequestState.error) {
                                   return Text(data.message);
                                 } else if (data.recommendationState ==
-                                    RequestState.Loaded) {
+                                    RequestState.loaded) {
                                   return Container(
                                     height: 150,
                                     child: ListView.builder(
@@ -254,7 +250,7 @@ class DetailContent extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                SeriesDetailPage.ROUTE_NAME,
+                                                SeriesDetailPage.routeName,
                                                 arguments: series.id,
                                               );
                                             },
@@ -340,9 +336,9 @@ class DetailContent extends StatelessWidget {
     final int minutes = runtime % 60;
 
     if (hours > 0) {
-      return '$hours Hourse $minutes Mintues';
+      return '$hours Hours $minutes Minutes';
     } else {
-      return '$minutes Mintues';
+      return '$minutes Minutes';
     }
   }
 }

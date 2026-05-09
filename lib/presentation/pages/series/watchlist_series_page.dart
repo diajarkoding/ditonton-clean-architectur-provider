@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WatchlistSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist-series';
+  static const routeName = '/watchlist-series';
 
   @override
   _WatchlistSeriesPageState createState() => _WatchlistSeriesPageState();
@@ -44,11 +44,11 @@ class _WatchlistSeriesPageState extends State<WatchlistSeriesPage>
         padding: const EdgeInsets.all(8.0),
         child: Consumer<WatchlistSeriesNotifier>(
           builder: (context, data, child) {
-            if (data.watchlistState == RequestState.Loading) {
+            if (data.watchlistState == RequestState.loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.watchlistState == RequestState.Loaded) {
+            } else if (data.watchlistState == RequestState.loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final series = data.watchlistSeries[index];

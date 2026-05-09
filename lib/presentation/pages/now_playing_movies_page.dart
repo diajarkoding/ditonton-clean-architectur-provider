@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NowPlayingMoviePage extends StatefulWidget {
-  static const ROUTE_NAME = '/now-playing-movies';
+  static const routeName = '/now-playing-movies';
 
   @override
   _NowPlayingMoviePageState createState() => _NowPlayingMoviePageState();
@@ -30,11 +30,11 @@ class _NowPlayingMoviePageState extends State<NowPlayingMoviePage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<MovieListNotifier>(
           builder: (context, data, child) {
-            if (data.nowPlayingState == RequestState.Loading) {
+            if (data.nowPlayingState == RequestState.loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.nowPlayingState == RequestState.Loaded) {
+            } else if (data.nowPlayingState == RequestState.loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = data.nowPlayingMovies[index];

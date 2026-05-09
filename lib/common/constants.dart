@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const String BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+const String baseImageUrl = 'https://image.tmdb.org/t/p/w500';
 
 // colors
 const Color kRichBlack = Color(0xFF000814);
@@ -21,26 +21,22 @@ final TextStyle kSubtitle = GoogleFonts.poppins(
 final TextStyle kBodyText = GoogleFonts.poppins(
     fontSize: 13, fontWeight: FontWeight.w400, letterSpacing: 0.25);
 
-// text theme
+// text theme (Flutter 3.x compatible)
 final kTextTheme = TextTheme(
-  headline5: kHeading5,
-  headline6: kHeading6,
-  subtitle1: kSubtitle,
-  bodyText2: kBodyText,
+  headlineLarge: kHeading5,
+  headlineMedium: kHeading6,
+  titleMedium: kSubtitle,
+  bodyMedium: kBodyText,
 );
 
-const kColorScheme = ColorScheme(
+// color scheme (Flutter 3.x compatible)
+final kColorScheme = ColorScheme.dark(
   primary: kMikadoYellow,
-  primaryContainer: kMikadoYellow,
-  secondary: kPrussianBlue,
-  secondaryContainer: kPrussianBlue,
-  surface: kRichBlack,
-  background: kRichBlack,
-  error: Colors.red,
   onPrimary: kRichBlack,
+  secondary: kPrussianBlue,
   onSecondary: Colors.white,
+  surface: kRichBlack,
   onSurface: Colors.white,
-  onBackground: Colors.white,
+  error: Colors.red,
   onError: Colors.white,
-  brightness: Brightness.dark,
 );

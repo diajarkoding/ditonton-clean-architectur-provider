@@ -17,7 +17,7 @@ class SeriesCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            SeriesDetailPage.ROUTE_NAME,
+            SeriesDetailPage.routeName,
             arguments: series.id,
           );
         },
@@ -57,7 +57,7 @@ class SeriesCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${series.posterPath}',
+                  imageUrl: '$baseImageUrl${series.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
