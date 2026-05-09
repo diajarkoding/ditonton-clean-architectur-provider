@@ -44,7 +44,7 @@ void main() {
   );
 
   final tSeries = Series(
-    adult: null,
+    adult: false,
     backdropPath: "/5kkw5RT1OjTAMh3POhjo5LdaACZ.jpg",
     firstAirDate: "2021-10-12",
     genreIds: [80, 10765],
