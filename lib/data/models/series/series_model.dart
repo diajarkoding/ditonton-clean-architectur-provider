@@ -76,7 +76,7 @@ class SeriesModel extends Equatable {
 
   Series toEntity() {
     return Series(
-      adult: adult,
+      adult: adult ?? false,
       backdropPath: backdropPath != null ? backdropPath : null,
       firstAirDate: firstAirDate != null ? firstAirDate : null,
       genreIds: genreIds,
@@ -88,7 +88,7 @@ class SeriesModel extends Equatable {
       originalName: originalName,
       overview: overview,
       popularity: popularity,
-      posterPath: posterPath!,
+      posterPath: posterPath,
       voteAverage: voteAverage,
       voteCount: voteCount,
     );
