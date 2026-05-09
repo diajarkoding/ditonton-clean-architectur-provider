@@ -66,7 +66,7 @@ void main() {
       // act
       provider.fetchSeriesDetail(tId);
       // assert
-      expect(provider.seriesDetailState, RequestState.Loading);
+      expect(provider.seriesDetailState, RequestState.loading);
       expect(listenerCallCount, 1);
     });
 
@@ -76,7 +76,7 @@ void main() {
       // act
       await provider.fetchSeriesDetail(tId);
       // assert
-      expect(provider.seriesDetailState, RequestState.Loaded);
+      expect(provider.seriesDetailState, RequestState.loaded);
       expect(provider.seriesDetail, testSeriesDetail);
       expect(listenerCallCount, 2);
     });
@@ -88,7 +88,7 @@ void main() {
       // act
       await provider.fetchSeriesDetail(tId);
       // assert
-      expect(provider.seriesDetailState, RequestState.Loaded);
+      expect(provider.seriesDetailState, RequestState.loaded);
     });
   });
 
@@ -110,7 +110,7 @@ void main() {
   //   //   // act
   //   //   await provider.fetchSeriesDetail(tId);
   //   //   // assert
-  //   //   expect(provider.recommendationState, RequestState.Loaded);
+  //   //   expect(provider.recommendationState, RequestState.loaded);
   //   //   expect(provider.seriesRecommendations, tSeriesDetail);
   //   // });
 
@@ -123,7 +123,7 @@ void main() {
   //   //   // act
   //   //   await provider.fetchSeriesDetail(tId);
   //   //   // assert
-  //   //   expect(provider.recommendationState, RequestState.Error);
+  //   //   expect(provider.recommendationState, RequestState.error);
   //   //   expect(provider.message, 'Failed');
   //   // });
   // });
@@ -201,7 +201,7 @@ void main() {
       // act
       await provider.fetchSeriesDetail(tId);
       // assert
-      expect(provider.seriesDetailState, RequestState.Error);
+      expect(provider.seriesDetailState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

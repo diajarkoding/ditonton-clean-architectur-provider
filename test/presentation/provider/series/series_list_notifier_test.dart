@@ -67,7 +67,7 @@ void main() {
 
   group('now playing series', () {
     test('initialState should be Empty', () {
-      expect(provider.nowPlayingState, equals(RequestState.Empty));
+      expect(provider.nowPlayingState, equals(RequestState.empty));
     });
 
     test('should get data from the usecase', () async {
@@ -87,7 +87,7 @@ void main() {
       // act
       provider.fetchNowPlayingSeries();
       // assert
-      expect(provider.nowPlayingState, RequestState.Loading);
+      expect(provider.nowPlayingState, RequestState.loading);
     });
 
     test('should change series when data is gotten successfully', () async {
@@ -97,7 +97,7 @@ void main() {
       // act
       await provider.fetchNowPlayingSeries();
       // assert
-      expect(provider.nowPlayingState, RequestState.Loaded);
+      expect(provider.nowPlayingState, RequestState.loaded);
       expect(provider.nowPlayingSeries, tSeriesList);
       expect(listenerCallCount, 2);
     });
@@ -109,7 +109,7 @@ void main() {
       // act
       await provider.fetchNowPlayingSeries();
       // assert
-      expect(provider.nowPlayingState, RequestState.Error);
+      expect(provider.nowPlayingState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -123,8 +123,8 @@ void main() {
       // act
       provider.fetchPopularSeries();
       // assert
-      expect(provider.popularSeriesState, RequestState.Loading);
-      // verify(provider.setState(RequestState.Loading));
+      expect(provider.popularSeriesState, RequestState.loading);
+      // verify(provider.setState(RequestState.loading));
     });
 
     test('should change series data when data is gotten successfully',
@@ -135,7 +135,7 @@ void main() {
       // act
       await provider.fetchPopularSeries();
       // assert
-      expect(provider.popularSeriesState, RequestState.Loaded);
+      expect(provider.popularSeriesState, RequestState.loaded);
       expect(provider.popularSeries, tSeriesList);
       expect(listenerCallCount, 2);
     });
@@ -147,7 +147,7 @@ void main() {
       // act
       await provider.fetchPopularSeries();
       // assert
-      expect(provider.popularSeriesState, RequestState.Error);
+      expect(provider.popularSeriesState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -161,7 +161,7 @@ void main() {
       // act
       provider.fetchTopRatedSeries();
       // assert
-      expect(provider.topRatedSeriesState, RequestState.Loading);
+      expect(provider.topRatedSeriesState, RequestState.loading);
     });
 
     test('should change series data when data is gotten successfully',
@@ -172,7 +172,7 @@ void main() {
       // act
       await provider.fetchTopRatedSeries();
       // assert
-      expect(provider.topRatedSeriesState, RequestState.Loaded);
+      expect(provider.topRatedSeriesState, RequestState.loaded);
       expect(provider.topRatedSeries, tSeriesList);
       expect(listenerCallCount, 2);
     });
@@ -184,7 +184,7 @@ void main() {
       // act
       await provider.fetchTopRatedSeries();
       // assert
-      expect(provider.topRatedSeriesState, RequestState.Error);
+      expect(provider.topRatedSeriesState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -198,7 +198,7 @@ void main() {
       // act
       provider.fetctSeriesRecommendations(tId);
       // assert
-      expect(provider.recommendationState, RequestState.Loading);
+      expect(provider.recommendationState, RequestState.loading);
     });
 
     test('should update recommendation state when data is gotten successfully',
@@ -209,7 +209,7 @@ void main() {
       // act
       await provider.fetctSeriesRecommendations(tId);
       // assert
-      expect(provider.recommendationState, RequestState.Loaded);
+      expect(provider.recommendationState, RequestState.loaded);
       expect(provider.seriesRecommendations, tSeriesList);
     });
 
@@ -221,7 +221,7 @@ void main() {
       // act
       await provider.fetctSeriesRecommendations(tId);
       // assert
-      expect(provider.recommendationState, RequestState.Error);
+      expect(provider.recommendationState, RequestState.error);
       expect(provider.message, 'Server Failure');
     });
   });
